@@ -27,7 +27,7 @@ class SaliencyImportance:
         for j in range(output.shape[1]):
             for i in range(output.shape[0]):
                 (success, saliency_map) = saliency.computeSaliency(cpu_output[i, j, :, :].detach().numpy())
-                importances[j] += saliency_map.sum()
+                importances[j] += (saliency_map>0.2).sum()
 
         return importances
 
